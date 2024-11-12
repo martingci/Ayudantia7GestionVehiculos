@@ -1,7 +1,8 @@
-package Gestor;
-import com.fasterxml.jackson.annotation.JsonProperty;
+package vehiculos;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+// Determinar por medio del parametro tipo que constructor utilizar.
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "tipo")
 @JsonSubTypes({
@@ -16,43 +17,7 @@ public abstract class Vehiculo {
 	protected int anio;
 	protected int precio;
 
-	public String getMarca() {
-		return this.marca;
-	}
-
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-
-	public String getModelo() {
-		return this.modelo;
-	}
-
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
-
-	public int getAnio() {
-		return this.anio;
-	}
-
-	public void setAnio(int anio) {
-		this.anio = anio;
-	}
-
-	public int getPrecio() {
-		return this.precio;
-	}
-
-	public void setPrecio(int precio) {
-		this.precio = precio;
-	}
-
-	public abstract String getTipo();
-
-	public String toString() {
-		return this.marca + " " + this.modelo + " " + this.anio + " $" + this.precio;
-	}
+	// Constructor no es necesario para poder crear los objetos desde el Json
 
 	public Vehiculo(String marca, String modelo, int anio, int precio) {
 		this.marca = marca;
@@ -63,4 +28,43 @@ public abstract class Vehiculo {
 
 	public Vehiculo() {}
 
+	public abstract String getTipo();
+
+	// Getter y Setter
+
+	public String toString() {
+		return "Marca : " + this.marca + " | " + "Modelo: " + this.modelo + " | " + "Año: " + this.anio + " |  Precio: $" + this.precio;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public int getAnio() {
+		return anio;
+	}
+
+	public void setAnio(int anio) {
+		this.anio = anio;
+	}
+
+	public int getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
 }

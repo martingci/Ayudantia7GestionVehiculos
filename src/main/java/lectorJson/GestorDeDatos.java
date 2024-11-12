@@ -2,7 +2,6 @@ package lectorJson;
 import java.io.File;
 import java.util.ArrayList;
 
-import Gestor.Vehiculo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class GestorDeDatos {
@@ -13,9 +12,9 @@ public class GestorDeDatos {
 
 	public <T> ArrayList<T> leerJson(String ubicacionArchivo, Class<T> clase) {
 		ArrayList<T> lista = new ArrayList<T>();
-		try {
+		try { // Lee el archivo y aplica el constructor determinado por el parametro tipo en el Json.
 			lista = mapper.readValue(new File(ubicacionArchivo), mapper.getTypeFactory().constructCollectionType(ArrayList.class, clase));
-		} catch (Exception e) {
+		} catch (Exception e) { // Si no se puede leer el archivo, se muestra un mensaje de error.
 			System.err.println("Error al leer el archivo en la ubicacion " + ubicacionArchivo + ": " + e.getMessage());
 		}
 		return lista;
@@ -27,17 +26,6 @@ public class GestorDeDatos {
 			mapper.writeValue(new File(ubicacionArchivo), listaAGuardar);
 		} catch (Exception e) {
 			System.err.println("Error al guardar el archivo en la ubicacion " + ubicacionArchivo + ": " + e.getMessage());
-		}
-	}
-
-	public ArrayList<Vehiculo> LeerPersonajes(String ubicacionArchivo) {
-		try {
-			return mapper.readValue(new File(ubicacionArchivo),
-					mapper.getTypeFactory().constructCollectionType(ArrayList.class, Vehiculo.class));
-
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
 		}
 	}
 

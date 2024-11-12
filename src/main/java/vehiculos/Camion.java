@@ -1,4 +1,4 @@
-package Gestor;
+package vehiculos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -6,27 +6,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Camion extends Vehiculo {
 	private int capacidadCargaToneladas;
 
+	public Camion() {}
+
 	public Camion(String marca, String modelo, int ano, int precio, int capacidad) {
 		super(marca, modelo, ano, precio);
 		this.capacidadCargaToneladas = capacidad;
 	}
 
-	public Camion() {}
-
-	public int getCapacidadCargaToneladas() {
-		return this.capacidadCargaToneladas;
+	public String toString() {
+		return "Tipo : " + this.getTipo() + " | " + super.toString() + " | " + "Capacidad: " + this.capacidadCargaToneladas + " ton";
 	}
 
 	public String getTipo() {
 		return "Camion";
 	}
 
-	public String toString() {
-		return this.getTipo() + " " + super.toString() + " " + this.capacidadCargaToneladas + " kg";
+	//Getter y Setter
+
+	public int getCapacidadCargaToneladas() {
+		return capacidadCargaToneladas;
 	}
 
 	public void setCapacidadCargaToneladas(int capacidadCargaToneladas) {
 		this.capacidadCargaToneladas = capacidadCargaToneladas;
 	}
-
 }
